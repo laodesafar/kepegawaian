@@ -1,0 +1,49 @@
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Edit Golongan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="needs-validation" action="/admin/golongan?_method=PUT" method="POST" novalidate>
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="pangkat">Jenis Pangkat</label>
+                  <input type="text" class="form-control pangkat" name="pangkat" placeholder="Input Golongan" required>
+                  <div class="invalid-feedback">
+                    Pangkat wajib diinput
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="golongan">Golongan</label>
+                    <select class="form-control golongan"  name="golongan" required>
+                      <option>IIA</option>
+                      <option>IIB</option>
+                      <option>IIC</option>
+                      <option>IID</option>
+                      <option>IIIA</option>
+                      <option>IIIB</option>
+                      <option>IIIC</option>
+                      <option>IIID</option>
+                      <option>IVA</option>
+                      <option>IVB</option>
+                      <option>IVC</option>
+                      <option>IVD</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Golongan wajib dipilih
+                    </div>
+                  </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" class="id" name="id">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

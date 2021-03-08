@@ -1,0 +1,75 @@
+<div class="tab-pane fade" id="show-golongan" role="tabpanel" aria-labelledby="golongan-tab">
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4 mt-2">
+    <div class="card-header py-3">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#golonganModal">
+        <i class="fas fa-plus"></i>
+        </button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered tableData" id="golonganTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Pangkat <br> Golongan</th>
+              <th>TMT</th>
+              <th>Pengesah</th>
+              <th>Nomor <br> Tgl SK</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for ( let i = 0; i < pengabdi.naikGolonganId.length; i++ ) { %>
+              <tr>
+                <td><%= i+1 %></td>
+                <td> <%= pengabdi.naikGolonganId[i].golonganId[0].pangkat %> / <%= pengabdi.naikGolonganId[i].golonganId[0].golongan %> </td>
+                <% var bulan = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
+                <% var bulan2 = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
+                <% var xbulan = pengabdi.naikGolonganId[i].tmtGolongan.getMonth(); %>
+                <% var bulan = bulan[xbulan]; %>
+                <td> <%= `${pengabdi.naikGolonganId[i].tmtGolongan.getDate()} ${bulan} ${pengabdi.naikGolonganId[i].tmtGolongan.getFullYear()}` %> </td>
+                <td> <%= pengabdi.naikGolonganId[i].pejabatPengesah %> </td>
+                <% var xbulan2 = pengabdi.naikGolonganId[i].tanggalSk.getMonth(); %>
+                <% var bulan2 = bulan2[xbulan2]; %>
+                <td><%= pengabdi.naikGolonganId[i].nomorSk %>, <br> <%= `${pengabdi.naikGolonganId[i].tanggalSk.getDate()} ${bulan2} ${pengabdi.naikGolonganId[i].tanggalSk.getFullYear()}` %></td>
+                <td class="text-center">
+                <% if ( pengabdi.naikGolonganId[i].isAktif == false) { %>
+                  <a href="javascript:void(0)" type="button" title="detail" class="btn btn-warning  btn-sm button-status"
+                  data-idpengabdi="<%= pengabdi.id %>"
+                  data-id="<%= pengabdi.naikGolonganId[i].id %>"
+                  data-pangkat="<%= pengabdi.naikGolonganId[i].golonganId[0].pangkat  %>"
+                  ><i class="fas fa-cog"></i> Setup</a>
+                  <% } else { %>
+                    <button class="btn btn-success btn-sm"  disabled><i class="fas fa-check"></i> Aktif</button>
+                  <% } %>
+                </td>
+                <td>
+                  <a href="javascript:void(0)" type="button" title="detail" class="btn btn-primary btn-circle btn-sm button-detail"
+                  data-foto ="<%= pengabdi.naikGolonganId[i].fotoUrl %>"
+                  ><i class="fas fa-images"></i></a>
+                  <a href="javascript:void(0)" type="button" title="edit" class="btn btn-warning btn-circle btn-sm button-update"
+                  data-idpengabdi="<%= pengabdi.id %>"
+                  data-id="<%= pengabdi.naikGolonganId[i].id %>"
+                  data-golonganid="<%= pengabdi.naikGolonganId[i].golonganId[0].id %>"
+                  data-tmtgolongan="<% if ( pengabdi.naikGolonganId[i].tmtGolongan) { %><%= pengabdi.naikGolonganId[i].tmtGolongan.toISOString().split('T')[0] %><%}%>"
+                  data-pejabatpengesah="<%= pengabdi.naikGolonganId[i].pejabatPengesah %>"
+                  data-nomorsk="<%= pengabdi.naikGolonganId[i].nomorSk %>"
+                  data-tanggalsk="<% if ( pengabdi.naikGolonganId[i].tanggalSk) { %><%= pengabdi.naikGolonganId[i].tanggalSk.toISOString().split('T')[0] %><%}%>"
+                  ><i class="fas fa-edit"></i></a>
+                    <button  title="hapus" class="btn btn-danger btn-circle btn-sm button-hapus" data-toggle="modal" data-target="#hapusModal"
+                    data-idpengabdi="<%= pengabdi.id %>"
+                    data-id="<%= pengabdi.naikGolonganId[i].id %>"
+                    data-pangkat="<%= pengabdi.naikGolonganId[i].golonganId[0].pangkat  %> / <%= pengabdi.naikGolonganId[i].golonganId[0].golongan  %>"
+                    ><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- End of DataTables -->
+</div>

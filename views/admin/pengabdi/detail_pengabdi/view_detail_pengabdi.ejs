@@ -1,0 +1,473 @@
+<%- include('../../../partials/header.ejs') %>
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+<%- include('../../../partials/sidebar.ejs') %>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+<%- include('../../../partials/navbar.ejs') %>
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+           <%- include('../../../partials/message.ejs') %>
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800 title">Detail <%= pengabdi.nama %></h1>
+          <!-- End of Page Heading -->
+          <a href="../../../admin/pengabdi" class="btn btn-primary mb-3">
+            <i class="fas fa-arrow-left"></i> Kembali
+          </a>
+          <div class="row">
+            <div class="col col-lg-8 col-12">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="pengabdi" data-toggle="tab" href="#show-pengabdi" role="tab"
+                    aria-controls="pengabdi" aria-selected="true">
+                    <span class="d-block d-sm-none">Pengabdi</span>
+                    <span class="d-none d-sm-block"><i class="fas fa-user text-primary mr-2"></i>Pengabdi</span></a>
+                </li>
+                <% if (pengabdi.statusPernikahan != "Belum Nikah") { %>
+                  <li class="nav-item">
+                    <a class="nav-link" id="keluarga" data-toggle="tab" href="#show-keluarga" role="tab"
+                      aria-controls="keluarga" aria-selected="false">
+                      <span class="d-block d-sm-none">Keluarga</span>
+                      <span class="d-none d-sm-block"><i class="fas fa-users text-warning mr-2"></i>Keluarga</span></a>
+                    </a>
+                  </li>
+                <% } %>
+                <li class="nav-item">
+                  <a class="nav-link" id="pendidikan" data-toggle="tab" href="#show-pendidikan" role="tab"
+                    aria-controls="pendidikan" aria-selected="false">
+                    <span class="d-block d-sm-none">Pendidikan</span>
+                    <span class="d-none d-sm-block"><i class="fas fa-graduation-cap text-success mr-2"></i>Pendidikan</span></a>
+                </li>
+                <% if (pengabdi.jenisPengabdiId[0].jenis != false) { %>
+                  <li class="nav-item">
+                    <a class="nav-link" id="golongan" data-toggle="tab" href="#show-golongan" role="tab"
+                      aria-controls="golongan" aria-selected="false">
+                      <span class="d-block d-sm-none">Golongan</span>
+                      <span class="d-none d-sm-block"><i class="fas fa-calendar text-danger mr-2"></i>Golongan</span></a>
+                  </li>
+                  <% } %>
+                  <li class="nav-item">
+                    <a class="nav-link" id="jabatan" data-toggle="tab" href="#show-jabatan" role="tab"
+                      aria-controls="jabatan" aria-selected="false">
+                      <span class="d-block d-sm-none">Jabatan</span>
+                      <span class="d-none d-sm-block"><i class="fas fa-calendar-check text-secondary mr-2"></i>Jabatan</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="mutasi" data-toggle="tab" href="#show-mutasi" role="tab"
+                      aria-controls="mutasi" aria-selected="false">
+                      <span class="d-block d-sm-none">Mutasi</span>
+                      <span class="d-none d-sm-block"><i class="fas fa-exchange-alt text-warning mr-2"></i>Mutasi</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="cuti" data-toggle="tab" href="#show-cuti" role="tab"
+                      aria-controls="cuti" aria-selected="false">
+                      <span class="d-block d-sm-none">Cuti</span>
+                      <span class="d-none d-sm-block"><i class="fas fa-calendar-minus text-success mr-2"></i>Cuti</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="hukuman" data-toggle="tab" href="#show-hukuman" role="tab"
+                      aria-controls="mutasi" aria-selected="false">
+                      <span class="d-block d-sm-none">Hukuman</span>
+                      <span class="d-none d-sm-block"><i class="fas fa-gavel text-danger mr-2"></i>Hukuman</span></a>
+                  </li>
+
+
+
+              </ul>
+
+              <div class="tab-content" id="myTabContent">
+                  <%- include('show_pengabdi') %>
+                  <% if (pengabdi.statusPernikahan != "Belum Nikah") { %>
+                    <%- include('keluarga/tabel_keluarga') %>
+                    <% }  %>
+
+                    <%- include('pendidikan/tabel_pendidikan') %>
+                    <% if (pengabdi.jenisPengabdiId[0].jenis != false) { %>
+                      <%- include('golongan/tabel_golongan') %>
+                      <% } %>
+                      <%- include('jabatan/tabel_jabatan') %>
+
+              </div>
+            </div>
+
+            <div class="col col-lg-4 col-12 mt-1">
+              <div class="card shadow mt-lg-5 mt-2 mb-2">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user text-primary mr-2"></i>Kepegawaian <%= pengabdi.nama %></h6>
+                </div>
+                <div class="card-body">
+                  <a href="#pensiunModal" class="btn btn-primary btn-icon-split mt-2" data-toggle="modal" data-target="#pensiunModal">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-calendar-check"></i>
+                    </span>
+                    <span class="text">Pensiun</span>
+                </a>
+                <% if (pengabdi.jenisPengabdiId[0].jenis != false) { %>
+                  <a href="#naikPangkatModal" class="btn btn-primary btn-icon-split mt-2" data-toggle="modal" data-target="#naikPangkatModal">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-calendar-plus"></i>
+                    </span>
+                    <span class="text">Naik Pangkat</span>
+                </a>
+                <a href="#gajiModal" class="btn btn-primary btn-icon-split mt-2" data-toggle="modal" data-target="#gajiModal">
+                  <span class="icon text-white-50">
+                      <i class="fas fa-calendar-day"></i>
+                  </span>
+                  <span class="text">Naik Gaji</span>
+              </a>
+                <a href="#penghargaanModal" class="btn btn-primary btn-icon-split mt-2" data-toggle="modal" data-target="#penghargaanModal">
+                  <span class="icon text-white-50">
+                      <i class="fas fa-trophy"></i>
+                  </span>
+                  <span class="text">Penghargaan</span>
+              </a>
+                <a href="#diklatModal" class="btn btn-primary btn-icon-split mt-2" data-toggle="modal" data-target="#diklatModal">
+                  <span class="icon text-white-50">
+                      <i class="fas fa-graduation-cap"></i>
+                  </span>
+                  <span class="text">Diklat</span>
+              </a>
+                <a href="#seminarModal" class="btn btn-primary btn-icon-split mt-2" data-toggle="modal" data-target="#seminarModal">
+                  <span class="icon text-white-50">
+                      <i class="fas fa-users"></i>
+                  </span>
+                  <span class="text">Seminar</span>
+              </a>
+                <a href="#latihanJabatanModal" class="btn btn-primary btn-icon-split mt-2" data-toggle="modal" data-target="#latihanJabatanModal">
+                  <span class="icon text-white-50">
+                      <i class="fas fa-user-check"></i>
+                  </span>
+                  <span class="text">Latihan Jabatan</span>
+              </a>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+<%- include('../../../partials/footer.ejs') %>
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<%- include('kepegawaian/tabel_gaji.ejs') %>
+<%- include('kepegawaian/tabel_naikpangkat.ejs') %>
+<%- include('kepegawaian/tabel_pensiun.ejs') %>
+<%- include('jabatan/add_jabatan.ejs') %>
+<%- include('jabatan/edit_jabatan.ejs') %>
+<%- include('jabatan/status_jabatan.ejs') %>
+<%- include('jabatan/detail_jabatan.ejs') %>
+<%- include('golongan/add_golongan.ejs') %>
+<%- include('golongan/edit_golongan.ejs') %>
+<%- include('golongan/status_golongan.ejs') %>
+<%- include('golongan/detail_golongan.ejs') %>
+<%- include('pendidikan/add_pendidikan.ejs') %>
+<%- include('pendidikan/edit_pendidikan.ejs') %>
+<%- include('pendidikan/detail_ijazah.ejs') %>
+<%- include('pendidikan/status_pendidikan.ejs') %>
+<%- include('keluarga/add_keluarga.ejs') %>
+<%- include('keluarga/edit_keluarga.ejs') %>
+<%- include('../../../partials/hapus_modal') %>
+<%- include('../../../partials/js.ejs') %>
+
+<%- include('../../../partials/validation.ejs') %>
+
+
+<script>
+  // Tab Keluarga
+   $("#keluargaTable").on('click', '.button-update', function(){
+    let idPengabdi= $(this).data('idpengabdi');
+    let id= $(this).data('id');
+    let nik = $(this).data('nik');
+    let nama  = $(this).data('nama');
+    let tempatLahir = $(this).data('tempatlahir');
+    let tanggalLahir = $(this).data('tanggallahir');
+    let jenisKelamin = $(this).data('jeniskelamin');
+    let pendidikan = $(this).data('pendidikan');
+    let hubungan = $(this).data('hubungan');
+
+    $('#editModal').modal('show');
+    $('.idPengabdi').val(idPengabdi);
+    $('.id').val(id);
+    $('.nik').val(nik);
+    $('.nama').val(nama);
+    $('.tempatLahir').val(tempatLahir);
+    $('.tanggalLahir').val(tanggalLahir);
+    if (jenisKelamin == "Laki - Laki") {
+      $('.laki').attr("checked", "checked");
+    } else {
+      $('.perempuan').attr("checked", "checked");
+    }
+    $('.pendidikan').val(pendidikan);
+    $('.hubungan').val(hubungan);
+  })
+
+  $("#keluargaTable").on('click', '.button-hapus', function(){
+    let idPengabdi = $(this).data('idpengabdi');
+    let id = $(this).data('id');
+    let nama  = $(this).data('nama');
+    let title = "Hapus Keluarga";
+    let actionValue = `/admin/pengabdi/keluarga/${idPengabdi}/${id}?_method=DELETE`;
+    let detail = `Apakah anda yakin ingin menghapus ${nama} ?`;
+
+    $('.action').attr("action",actionValue);
+    $('.hapusDetail').text(detail);
+    $('.modal-title').text(title);
+
+  })
+
+
+  // Tab Pendidikan
+  $("#pendidikanTable").on('click', '.button-update', function(){
+    let idPengabdi= $(this).data('idpengabdi');
+    let id = $(this).data('id');
+    let tingkat = $(this).data('tingkat');
+    let nama = $(this).data('nama');
+    let lokasi = $(this).data('lokasi');
+    let jurusan = $(this).data('jurusan');
+    let nomorIjazah = $(this).data('nomorijazah');
+    let tanggalIjazah = $(this).data('tanggalijazah');
+    let namaPimpinan = $(this).data('namapimpinan');
+    $('#editPendidikanModal').modal('show');
+
+    $('.idPengabdi').val(idPengabdi);
+    $('.id').val(id);
+    $('.tingkat').val(tingkat);
+    $('.nama').val(nama);
+    $('.lokasi').val(lokasi);
+    $('.jurusan').val(jurusan);
+    $('.nomorIjazah').val(nomorIjazah);
+    $('.tanggalIjazah').val(tanggalIjazah);
+    $('.namaPimpinan').val(namaPimpinan);
+  })
+
+  $("#pendidikanTable").on('click', '.button-hapus', function(){
+    let idPengabdi = $(this).data('idpengabdi');
+    let id = $(this).data('id');
+    let nama  = $(this).data('nama');
+    let title = "Hapus Pendidikan";
+    let actionValue = `/admin/pengabdi/pendidikan/${idPengabdi}/${id}?_method=DELETE`;
+    let detail = `Apakah anda yakin ingin menghapus ${nama} ?`;
+
+    $('.action').attr("action",actionValue);
+    $('.hapusDetail').text(detail);
+    $('.modal-title').text(title);
+
+  })
+
+  $("#pendidikanTable").on('click', '.button-detail', function(){
+    let foto= $(this).data('foto');
+    let title = "Detail Ijazah";
+    let detail = `http://localhost:3000/${foto}`;
+
+    $('#detailModal').modal('show');
+
+    $('.foto').attr("src",detail);
+    $('.modal-title').text(title);
+  })
+
+  $("#pendidikanTable").on('click', '.button-status', function(){
+    let idPengabdi= $(this).data('idpengabdi');
+    let id = $(this).data('id');
+    let nama = $(this).data('nama');
+    let title = "Status Ijazah";
+    let detail = `Apakah anda yakin ingin setup ${nama} sebagai pendidikan terakhir ?`;
+
+
+    $('#statusModal').modal('show');
+    $('.idPengabdi').val(idPengabdi);
+    $('.id').val(id);
+    $('.setupDetail').text(detail);
+    $('.modal-title').text(title);
+
+  })
+
+  // Tab Golongan
+  $("#golonganTable").on('click', '.button-update', function(){
+    let idPengabdi= $(this).data('idpengabdi');
+    let id = $(this).data('id');
+    let golonganId = $(this).data('golonganid');
+    let tmtGolongan = $(this).data('tmtgolongan');
+    let pejabatPengesah = $(this).data('pejabatpengesah');
+    let nomorSk = $(this).data('nomorsk');
+    let tanggalSk = $(this).data('tanggalsk');
+
+    $('#editGolonganModal').modal('show');
+
+    $('.idPengabdi').val(idPengabdi);
+    $('.id').val(id);
+    $('.golonganId').val(golonganId);
+    $('.tmtGolongan').val(tmtGolongan);
+    $('.pejabatPengesah').val(pejabatPengesah);
+    $('.nomorSk').val(nomorSk);
+    $('.tanggalSk').val(tanggalSk);
+  })
+
+  $("#golonganTable").on('click', '.button-status', function(){
+    let idPengabdi= $(this).data('idpengabdi');
+    let id = $(this).data('id');
+    let pangkat = $(this).data('pangkat');
+    let title = "Status Golongan";
+    let detail = `Apakah anda yakin ingin setup ${pangkat} sebagai Golongan aktif ?`;
+
+
+    $('#statusGolonganModal').modal('show');
+    $('.idPengabdi').val(idPengabdi);
+    $('.id').val(id);
+    $('.setupDetail').text(detail);
+    $('.modal-title').text(title);
+
+  })
+
+  $("#golonganTable").on('click', '.button-detail', function(){
+    let foto= $(this).data('foto');
+    let title = "Detail SK Golongan";
+    let detail = `http://localhost:3000/${foto}`;
+
+    $('#detailGolonganModal').modal('show');
+
+    $('.foto').attr("src",detail);
+    $('.modal-title').text(title);
+  })
+
+  $("#golonganTable").on('click', '.button-hapus', function(){
+    let idPengabdi = $(this).data('idpengabdi');
+    let id = $(this).data('id');
+    let pangkat = $(this).data('pangkat');
+    let title = "Hapus Golongan";
+    let actionValue = `/admin/pengabdi/golongan/${idPengabdi}/${id}?_method=DELETE`;
+    let detail = `Apakah anda yakin ingin menghapus ${pangkat} ?`;
+
+    $('.action').attr("action",actionValue);
+    $('.hapusDetail').text(detail);
+    $('.modal-title').text(title);
+
+  })
+
+  // Tab Jabatan
+  $("#jabatanTable").on('click', '.button-update', function(){
+    let idPengabdi= $(this).data('idpengabdi');
+    let id = $(this).data('id');
+    let jabatanId = $(this).data('jabatanid');
+    let nomorSk = $(this).data('nomorsk');
+    let tanggalSk = $(this).data('tanggalsk');
+    let tmtJabatanAwal = $(this).data('tmtjabatanawal');
+    let tmtJabatanAkhir = $(this).data('tmtjabatanakhir');
+
+    $('#editJabatanModal').modal('show');
+    $('.idPengabdi').val(idPengabdi);
+    $('.id').val(id);
+    $('.jabatanId').val(jabatanId);
+    $('.nomorSk').val(nomorSk);
+    $('.tanggalSk').val(tanggalSk);
+    $('.tmtJabatanAwal').val(tmtJabatanAwal);
+    $('.tmtJabatanAkhir').val(tmtJabatanAkhir);
+  })
+
+  $("#jabatanTable").on('click', '.button-status', function(){
+    let idPengabdi= $(this).data('idpengabdi');
+    let id = $(this).data('id');
+    let jabatan = $(this).data('jabatan');
+    let title = "Status Jabatan";
+    let detail = `Apakah anda yakin ingin setup ${jabatan} sebagai Jabatan aktif ?`;
+
+
+    $('#statusJabatanModal').modal('show');
+    $('.idPengabdi').val(idPengabdi);
+    $('.id').val(id);
+    $('.setupDetail').text(detail);
+    $('.modal-title').text(title);
+
+  })
+
+  $("#jabatanTable").on('click', '.button-detail', function(){
+    let foto= $(this).data('foto');
+    let title = "Detail SK Jabatan";
+    let detail = `http://localhost:3000/${foto}`;
+
+    $('#detailJabatanModal').modal('show');
+
+    $('.foto').attr("src",detail);
+    $('.modal-title').text(title);
+  })
+
+  $("#jabatanTable").on('click', '.button-hapus', function(){
+    let idPengabdi = $(this).data('idpengabdi');
+    let id = $(this).data('id');
+    let jabatan = $(this).data('jabatan');
+    let title = "Hapus Jabatan";
+    let actionValue = `/admin/pengabdi/jabatan/${idPengabdi}/${id}?_method=DELETE`;
+    let detail = `Apakah anda yakin ingin menghapus ${jabatan} ?`;
+
+    $('.action').attr("action",actionValue);
+    $('.hapusDetail').text(detail);
+    $('.modal-title').text(title);
+
+  })
+
+
+
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+
+  var activeTab = localStorage.getItem('activeTab');
+  if(activeTab){
+      $('.nav-tabs a[href="' + activeTab + '"]').tab('show');
+  }
+
+  $('.tableData').DataTable({
+        "paging": false,
+        "info": false
+    } );
+
+
+</script>
+
+<%- include('../../../partials/foto_input.ejs') %>

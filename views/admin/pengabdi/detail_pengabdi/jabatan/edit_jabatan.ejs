@@ -1,0 +1,70 @@
+<!-- Modal -->
+<div class="modal fade" id="editJabatanModal" tabindex="-1" aria-labelledby="editJabatanModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editJabatanModalLabel">Edit Jabatan Pengabdi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="needs-validation"  action="/admin/pengabdi/jabatan/<%= pengabdi.id %>/?_method=PUT" method="POST" enctype="multipart/form-data" novalidate>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="jabatanId">Jabatan</label>
+              <select class="form-control jabatanId"  required>
+                  <option selected disabled>-- Pilih Jabatan --</option>
+                  <% for(let i = 0; i < jabatan.length; i++ ) { %>
+                    <option value="<%= jabatan[i].id %>"><%= jabatan[i].jabatan %>  </option>
+                  <% } %>
+                </select>
+                <div class="invalid-feedback">Jabatan wajib dipilih</div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-lg-6 col-sm-12 col-12">
+                  <label for="nomorSk">Nomor SK</label>
+                  <input type="text" class="form-control nomorSk"  name="nomorSk" placeholder="Input Nomor SK" required>
+                  <div class="invalid-feedback">
+                    Nomor SK wajib diinput
+                    </div>
+              </div>
+                <div class="form-group col-lg-6 col-sm-12 col-12">
+                  <label for="tanggalSk">Tanggal SK</label>
+                  <input type="date" class="form-control tanggalSk"  name="tanggalSk" placeholder="Input Tanggal SK" required>
+                  <div class="invalid-feedback">
+                    Tanggal SK wajib diinput
+                    </div>
+              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-lg-6 col-sm-12 col-12">
+                <label for="tmtJabatanAwal">TMT Jabatan</label>
+                <input type="date" class="form-control tmtJabatanAwal"  name="tmtJabatanAwal" placeholder="Dari" required>
+                <div class="invalid-feedback">
+                  TMT Jabatan wajib diinput
+                  </div>
+            </div>
+              <div class="form-group col-lg-6 col-sm-12 col-12">
+                <label for="tmtJabatanAkhir">TMT Jabatan</label>
+                <input type="date" class="form-control tmtJabatanAkhir"  name="tmtJabatanAkhir" placeholder="Sampai" required>
+                <div class="invalid-feedback">
+                  TMT Jabatan wajib diinput
+                  </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fotoUrl">Scan SK</label>
+            <input type="file" accept=".jpg,.jpeg,.gif,.png" class="form-control fotoUrl"  name="fotoUrl" placeholder="Input Foto" >
+            <div class="invalid-feedback fotoValid"></div>
+          </div>
+        </div>
+          <div class="modal-footer">
+            <input type="hidden" class="idPengabdi" name="idPengabdi">
+            <input type="hidden" class="id" name="id">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,61 @@
+<div class="tab-pane fade" id="show-mutasi" role="tabpanel" aria-labelledby="mutasi-tab">
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4 mt-2">
+    <div class="card-header py-3">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahModal">
+        <i class="fas fa-plus"></i>
+        </button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered tableData" id="mutasiTable"  width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Dari</th>
+              <th>Ke</th>
+              <th>SK Mutasi</th>
+              <th>Tanggal Mutasi</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for ( let i = 0; i < pengabdi.keluargaId.length; i++ ) { %>
+              <tr>
+                <td> <%= pengabdi.keluargaId[i].nik %> </td>
+                <td> <%= pengabdi.keluargaId[i].nama %> </td>
+                <% var bulan = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
+                <% var xbulan = pengabdi.keluargaId[i].tanggalLahir.getMonth(); %>
+                <% var bulan = bulan[xbulan]; %>
+                <td><%= pengabdi.keluargaId[i].jenisKelamin %>, <br>  <%= pengabdi.keluargaId[i].tempatLahir %>, <%= `${pengabdi.keluargaId[i].tanggalLahir.getDate()} ${bulan} ${pengabdi.keluargaId[i].tanggalLahir.getFullYear()}` %></td>
+                <td> <%= pengabdi.keluargaId[i].pendidikan %> </td>
+                <td> <%= pengabdi.keluargaId[i].pekerjaan %> </td>
+                <td> <%= pengabdi.keluargaId[i].hubungan %> </td>
+
+                <td>
+                    <a href="javascript:void(0)" type="button" title="edit" class="btn btn-warning btn-circle btn-sm button-update"
+                    data-idpengabdi="<%= pengabdi.id %>"
+                    data-id="<%= pengabdi.keluargaId[i].id %>"
+                    data-nik="<%= pengabdi.keluargaId[i].nik%>"
+                    data-nama="<%= pengabdi.keluargaId[i].nama%>"
+                    data-tempatlahir="<%= pengabdi.keluargaId[i].tempatLahir%>"
+                    data-tanggallahir="<% if ( pengabdi.keluargaId[i].tanggalLahir) { %><%= pengabdi.keluargaId[i].tanggalLahir.toISOString().split('T')[0] %><%}%>"
+                    data-jenisKelamin="<%= pengabdi.keluargaId[i].tanggalKelamin%>"
+                    data-pendidikan="<%= pengabdi.keluargaId[i].pendidikan%>"
+                    data-hubungan="<%= pengabdi.keluargaId[i].hubungan%>"
+                    ><i class="fas fa-edit"></i></a>
+                    <button  title="hapus" class="btn btn-danger btn-circle btn-sm button-hapus" data-toggle="modal" data-target="#hapusModal"
+                    data-id="<%= pengabdi.keluargaId[i].id %>"
+                    data-idpengabdi="<%= pengabdi.id %>"
+                    data-nama="<%= pengabdi.keluargaId[i].nama%>"
+                    ><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- End of DataTables -->
+</div>

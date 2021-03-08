@@ -1,0 +1,83 @@
+  <!-- Modal -->
+  <div class="modal fade" id="pendidikanModal" tabindex="-1" aria-labelledby="pendidikanModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pendidikanModalLabel">Tambah Pendidikan Pengabdi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="needs-validation"  action="/admin/pengabdi/pendidikan/<%= pengabdi.id %>" method="POST" enctype="multipart/form-data"  novalidate>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="tingkat">Pendidikan</label>
+                <select class="form-control"  name="tingkat" required>
+                    <option value="" selected disabled>-- Pilih Pendidikan --</option>
+                    <option value="SMA">SMA / Sederajat</option>
+                    <option value="D1">DI</option>
+                    <option value="D2">DII</option>
+                    <option value="D3">DIII</option>
+                    <option value="S1">Stata I</option>
+                    <option value="S2">Stata II</option>
+                    <option value="S3">Stata III</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Pendidikan wajib dipilih
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="nama">Instansi</label>
+                <input type="text" class="form-control"  name="nama" placeholder="Input Instansi" required>
+                <div class="invalid-feedback">
+                  Nama wajib diinput
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="lokasi">Lokasi</label>
+                <input type="text" class="form-control" name="lokasi" placeholder="Input Lokasi" required>
+                <div class="invalid-feedback">
+                  Lokasi wajib diinput
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="jurusan">Jurusan</label>
+                <input type="text" class="form-control"  name="jurusan" placeholder="Input Jurusan" required>
+                <div class="invalid-feedback">
+                  Jurusan wajib diinput
+                </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-lg-6 col-sm-12 col-12">
+                      <label for="nomorIjazah">Nomor Ijazah</label>
+                      <input type="text" class="form-control"  name="nomorIjazah" placeholder="Input Nomor Ijazah" required>
+                      <div class="invalid-feedback">
+                        Nomor Ijazah wajib diinput
+                        </div>
+                  </div>
+                    <div class="form-group col-lg-6 col-sm-12 col-12">
+                      <label for="tanggalIjazah">Tanggal Ijazah</label>
+                      <input type="date" class="form-control"  name="tanggalIjazah" placeholder="Input Tanggal Ijazah" required>
+                      <div class="invalid-feedback">
+                        Tanggal Ijazah wajib diinput
+                        </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="namaPimpinan">Kepsek / Rektor</label>
+                <input type="text" class="form-control"  name="namaPimpinan" placeholder="Input Kepsek / Rektor" required>
+              </div>
+              <div class="form-group">
+                <label for="fotoUrl">Scan Ijazah</label>
+                <input type="file" accept=".jpg,.jpeg,.gif,.png" class="form-control fotoUrl"  name="fotoUrl" placeholder="Input Foto" required>
+                <div class="invalid-feedback fotoValid">Scan Ijazah wajib diInput</div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary" data-active="active" data-show="show">Tambah</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

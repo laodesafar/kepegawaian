@@ -1,0 +1,99 @@
+  <!-- Modal -->
+  <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tambahModalLabel">Tambah Keluarga Pengabdi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="needs-validation"  action="/admin/pengabdi/keluarga/<%= pengabdi.id %>" method="POST"  novalidate>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="nik">NIK</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"  name="nik" placeholder="Input NIK"  aria-describedby="basic-addon1" required>
+                    <div class="invalid-feedback">
+                      NIK Wajib diinput
+                    </div>
+               </div>
+              </div>
+              <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" class="form-control" name="nama" placeholder="Input Nama" required>
+                <div class="invalid-feedback">
+                  Nama wajib diinput
+                </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-lg-6 col-sm-12 col-12">
+                      <label for="tempatLahir">Tempat</label>
+                      <input type="text" class="form-control" name="tempatLahir" placeholder="Input Tempat Lahir" required>
+                      <div class="invalid-feedback">
+                          Tempat Lahir wajib diinput
+                        </div>
+                  </div>
+                    <div class="form-group col-lg-6 col-sm-12 col-12">
+                      <label for="tanggalLahir">Tanggal Lahir</label>
+                      <input type="date" class="form-control" name="tanggalLahir"  placeholder="Input tanggalLahir" required>
+                      <div class="invalid-feedback">
+                          Tanggal Lahir wajib diinput
+                        </div>
+                  </div>
+              </div>
+              <fieldset class="form-group">
+                  <legend class="col-form-label">Jenis Kelamin</legend>
+                  <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="jenisKelamin"   value="Laki - Laki" required autofocus>
+                      <label class="form-check-label" for="laki-laki">
+                      Laki - Laki
+                      </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="jenisKelamin"  value="Perempuan" required>
+                      <label class="form-check-label" for="perempuan">
+                      Perempuan
+                      </label>
+                  </div>
+              </fieldset>
+              <div class="form-group">
+                <label for="pendidikan">Pendidikan</label>
+                <select class="form-control"  name="pendidikan">
+                    <option value="" selected disabled>-- Pilih Pendidikan --</option>
+                    <option>Tidak Bersekolah</option>
+                    <option>SD / Sederajat</option>
+                    <option>SMP / Sederajat</option>
+                    <option>SMA / Sederajat</option>
+                    <option>Stata I</option>
+                    <option>Stata II</option>
+                    <option>Stata III</option>
+                    <option>Lainnya</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="pekerjaan">Pekerjaan</label>
+                <input type="text" class="form-control" name="pekerjaan" placeholder="Input Pekerjaan">
+              </div>
+                <div class="form-group">
+                  <label for="hubungan">Hubungan</label>
+                  <select class="form-control"  name="hubungan">
+                      <option value="" selected disabled>-- Pilih Hubungan --</option>
+                      <% if (pengabdi.jenisKelamin == "Perempuan") { %>
+                        <option >Suami</option>
+                        <option>Anak</option>
+                      <% } else { %>
+                        <option>Istri</option>
+                        <option>Anak</option>
+                      <% } %>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary" data-active="active" data-show="show">Tambah</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

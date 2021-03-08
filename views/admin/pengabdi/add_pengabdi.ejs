@@ -1,0 +1,164 @@
+  <!-- Modal -->
+  <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tambahModalLabel">Tambah Pengabdi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="needs-validation" action="/admin/pengabdi" method="POST" enctype="multipart/form-data" novalidate>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="jenispengabdi">Jenis Pengabdi</label>
+                <select class="form-control jenisPengabdiId" id="jenispengabdi" name="jenisPengabdiId" required>
+                    <option  value="" selected disabled>-- Jenis Pengabdi --</option>
+                    <% for(let i = 0; i < jenisPengabdi.length; i++ ) { %>
+                      <option value="<%= jenisPengabdi[i].id %>" data-jenis="<%= jenisPengabdi[i].jenis%>"  > <%= jenisPengabdi[i].jenisPengabdi %> </option>
+                    <% } %>
+                  </select>
+                  <div class="invalid-feedback">
+                   Jenis Pengabdi wajib dipilih
+                  </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="nip">NIP</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text nip2" id="basic-addon1"></span>
+                    </div>
+                    <input type="text" class="form-control" id="nip" name="nip" placeholder="Input NIP"  aria-describedby="basic-addon1" required>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" class="form-control" id="nama" name="nama" placeholder="Input Nama" required>
+                <div class="invalid-feedback">
+                  Nama wajib diinput
+                </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-lg-6 col-sm-12 col-12">
+                      <label for="tempatLahir">Tempat</label>
+                      <input type="text" class="form-control" id="tempatLahir" name="tempatLahir" placeholder="Input Tempat Lahir" required>
+                      <div class="invalid-feedback">
+                          Tempat Lahir wajib diinput
+                        </div>
+                  </div>
+                    <div class="form-group col-lg-6 col-sm-12 col-12">
+                      <label for="tanggalLahir">Tanggal Lahir</label>
+                      <input type="date" class="form-control" id="tanggalLahir" name="tanggalLahir" placeholder="Input tanggalLahir" required>
+                      <div class="invalid-feedback">
+                          Tanggal Lahir wajib diinput
+                        </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="agama">Agama</label>
+                  <select class="form-control" id="agama" name="agama">
+                      <option value="" selected disabled>-- Pilih Agama --</option>
+                      <option>Islam</option>
+                      <option>Protestan</option>
+                      <option>Katolik</option>
+                      <option>Hindu</option>
+                      <option>Budha</option>
+                      <option>Konghucu</option>
+                      <option>Lainnya</option>
+                    </select>
+              </div>
+              <fieldset class="form-group">
+                  <legend class="col-form-label">Jenis Kelamin</legend>
+                  <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="jenisKelamin" id="laki-laki"  value="Laki - Laki" required autofocus>
+                      <label class="form-check-label" for="laki-laki">
+                      Laki - Laki
+                      </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="jenisKelamin" id="perempuan"  value="Perempuan" required>
+                      <label class="form-check-label" for="perempuan">
+                      Perempuan
+                      </label>
+                  </div>
+              </fieldset>
+              <div class="form-group">
+                  <label for="golonganDarah">Golongan Darah</label>
+                  <select class="form-control no-arrow dropdown" id="golonganDarah" name="golonganDarah">
+                      <option value="" selected disabled>-- Pilih Golongan Darah --</option>
+                      <option>A</option>
+                      <option>AB</option>
+                      <option>B</option>
+                      <option>O</option>
+                    </select>
+              </div>
+              <div class="form-group">
+                  <label for="statusPernikahan">Status Pernikahan</label>
+                  <select class="form-control" id="statusPernikahan" name="statusPernikahan">
+                      <option value="" selected disabled>-- Pilih Status Pernikahan --</option>
+                      <option>Belum Nikah</option>
+                      <option>Nikah</option>
+                      <option>Cerai</option>
+                    </select>
+              </div>
+              <div class="form-group">
+                  <label for="alamat">Alamat</label>
+                  <textarea class="form-control" id="alamat" name="alamat" placeholder="Input Alamat"></textarea>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-lg-6 col-sm-12 col-12">
+                      <label for="telpon">Nomor HP / WA</label>
+                      <input type="text" class="form-control" id="telpon" name="telpon" placeholder="Input Nomor" required>
+                      <div class="invalid-feedback">Nomor HP / WA wajib diinputkan</div>
+                  </div>
+                    <div class="form-group col-lg-6 col-sm-12 col-12">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Input Email" required>
+                    </div>
+              </div>
+              <div class="form-group">
+                  <label for="unit">Unit</label>
+                  <select class="form-control" id="unit" name="unitId"  required data-live-search="true" data-width="100%">
+                      <option value="" selected disabled>-- Pilih Unit --</option>
+                      <% for(let i = 0; i < unit.length; i++ ) { %>
+                        <option value="<%= unit[i].id %>"> <%= unit[i].unit %> </option>
+                      <% } %>
+                    </select>
+                    <div class="invalid-feedback">Unit wajib dipilih</div>
+              </div>
+
+              <div class="form-row hilang">
+                  <div class="form-group col-lg-6 col-sm-12 col-12">
+                    <label for="tmtgolongan">TMT Kenaikan Pangkat</label>
+                    <input type="date" class="form-control tmtGolongan"  name="tmtGolongan" placeholder="Input TMT">
+                    <div class="invalid-feedback">TMT Kenaikan Pangkat wajib diinputkan</div>
+                  </div>
+                  <div class="form-group col-lg-6 col-sm-12 col-12">
+                    <label for="tmtgaji">TMT Gaji Berkala</label>
+                    <input type="date" class="form-control tmtGaji" name="tmtGaji" placeholder="Input TMT">
+                    <div class="invalid-feedback">TMT Gaji Berkala wajib diinputkan</div>
+                  </div>
+              </div>
+
+              <div class="form-group" >
+                <label for="tmtKerja">TMT Mulai Kerja</label>
+                <input type="date" class="form-control tmtKerja"  name="tmtKerja" placeholder="Input TMT">
+              </div>
+              <div class="form-group">
+                <label for="fotoUrl">Foto</label>
+                <input type="file" accept=".jpg,.jpeg,.gif,.png" class="form-control fotoUrl" id="fotoUrl" name="fotoUrl" placeholder="Input Foto">
+                <div class="invalid-feedback fotoValid">File tidak boleh lebih dari 1 MB</div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary">Tambah</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,41 @@
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahModal">
+                <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Jenis Pangkat</th>
+                      <th>Golongan</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(let i = 0; i < golongan.length; i++ ) { %>
+                      <tr>
+                        <td><%= i+1 %></td>
+                        <td><%= golongan[i].pangkat %></td>
+                        <td><%= golongan[i].golongan %></td>
+                        <td>
+                          <a href="javascript:void(0)" type="button" class="btn btn-warning btn-circle btn-sm button-update"
+                          data-id="<%= golongan[i].id %>" data-pangkat="<%= golongan[i].pangkat%>"  data-golongan="<%= golongan[i].golongan%>"><i class="fas fa-edit"></i></a>
+                          <button  title="hapus" class="btn btn-danger btn-circle btn-sm button-hapus" data-toggle="modal" data-target="#hapusModal"
+                          data-id="<%= golongan[i].id %>"
+                          data-pangkat="<%= golongan[i].pangkat%>"
+                          ><i class="fas fa-trash"></i></button>
+                        </td>
+                      </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- End of DataTables -->

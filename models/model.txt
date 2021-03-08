@@ -1,0 +1,191 @@
+golongan {
+    nama : String
+}
+
+jabatan {
+    nama : String
+}
+
+jenisPengabdi {
+    nama : String
+}
+
+
+unitKerja {
+    nama: String,
+    tingkatUnit: String,
+}
+
+
+pengabdi {
+    nip : String,
+    tempatLahir : String,
+    tanggalLahir : Date,
+    namaPengabdi : String,
+    agama : String,
+    jenisKelamin: String,
+    golonganDarah: String,
+    alamat : String,
+    telpon : String,
+    email : String,
+    unitkerja : String,
+    fotoUrl : String,
+    unitID : [{
+        _id : ObjectId
+    }],
+    jenisPengabdiID : [{
+        _id : ObjectId
+    }]
+}
+
+
+naikJabatan {
+    nomorSk: String,
+    tanggalSk: date,
+    tmtJabatanAwal: date,
+    tmtJabatanAkhir: date,
+    fileSk: String,
+    pengabdiId:  [{ _id: ObjectId}],
+    jabatanId:  [{ _id: ObjectId}],
+    golonganId: [{ _id: ObjectId}]
+}
+
+naikGolongan {
+    nomorSk: String,
+    tanggalSk: date,
+    pejabatPengesah: String,
+    tmtPangkat: Date,
+    fileSk: String,
+    pengabdiId:  [{ _id: ObjectId}],
+    jabatanId:  [{ _id: ObjectId}],
+    golonganId: [{ _id: ObjectId}]
+}
+
+hukuman {
+    jenisHukuman : String,
+    pejabatPengesahHukuman: String,
+    nomorSk: String,
+    tanggalSk: Date,
+    pejabatPemulihHukuman,
+    nomorSkPemulihan: String,
+    tanggalSkPemulihan: Date,
+    pengabdiId: [{ _id: ObjectId}]
+}
+
+diklat: {
+    namaDiklat: String,
+    jumlahJam: Number,
+    penyelenggara: String,
+    tempat: String,
+    angkatan: String,
+    tahun: Year,
+    nomorSttp: String,
+    tanggalSttp: Date,
+    sertifikat: String,
+    pengabdiId; [{ _id: ObjectId}]
+}
+
+penghargaan {
+    namaPenghargaan: String,
+    tahun: Year,
+    instansiPembari: String,
+    pengabdiId; [{ _id: ObjectId}]
+}
+
+penugasan {
+    negaraTujuan: String,
+    tahun: Year,
+    lamaPenugasan: Day,
+    alasanPenugasan: String,
+    pengabdiId; [{ _id: ObjectId}]
+}
+
+seminar {
+    nama: String,
+    tempat: String,
+    penyelenggara: String,
+    tanggalSeminarAwal: Date,
+    tanggalSeminarAkhir: Date,
+    nomorPiagam: String,
+    tanggalPiagam: Date,
+    sertifikat: String,
+    pengabdiId; [{ _id: ObjectId}]
+
+}
+
+cuti {
+    nomorCuti: String,
+    tanggalSuratCuti: Date,
+    jenisCuti: String,
+    tanggalCutiAwal: Date,
+    tanggalCutiAkhir: Date,
+    lamaCuti: String,
+    terbilang: String,
+    ketentuan : [{
+        ketentuanA: String,
+        ketentuanB: String,
+        ketentuanC: String
+    }],
+    tembusan : [{
+        tembusanA: String,
+        tembusanB: String
+    }],
+    pengabdiId: [{ _id: ObjectId}]
+}
+
+latihanJabatan {
+    namaPelatih : String,
+    tahun: Year,
+    jumlahJam: Number,
+    sertifikat: String,
+    pengabdiId: [{ _id: ObjectId}]
+}
+
+ijazah {
+    tingkat: String,
+    namaInstansiPendidikan: String,
+    lokasi: String,
+    jurasan: String,
+    nomorIjazah: String,
+    tanggalIjazah: Date,
+    namaPimpinan: String,
+    isAktif : boolean,
+    pengabdiId: [{ _id: ObjectId}]
+}
+
+dataPasangan {
+    nama: String,
+    tempatLahir: String,
+    tanggalLahir: Date,
+    jenisKelamin: String,
+    pendidikan: String,
+    pekerjaan: String,
+    statusHubungan: String,
+    pasanganKe : Number,
+    pengabdiId: [{ _id: ObjectId}]
+}
+
+dataAnak {
+    nama: String,
+    tempatLahir: String,
+    tanggalLahir: Date,
+    jenisKelamin: String,
+    pendidikan: String,
+    pekerjaan: String,
+    statusHubungan: String,
+    anakPasanganKe: Number,
+    pengabdiId: [{ _id: ObjectId}]
+}
+
+mutasi {
+    jenisMutasi: String,
+    nomorSk: String,
+    tanggalMutasi: Date,
+    pengabdiId: [{ _id: ObjectId}]
+     unitID : [{
+        _id : ObjectId
+    }]
+}
+
+
+

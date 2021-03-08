@@ -1,0 +1,612 @@
+<%- include('../../partials/header.ejs') %>
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+<%- include('../../partials/sidebar.ejs') %>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+<%- include('../../partials/navbar.ejs') %>
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800">Halaman Dashboard</h1>
+
+
+          <div class="row">
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                  Jumlah Pengabdi</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                  <% let lk = 0 %>
+                                  <% let pr = 0 %>
+                                  <% let pg = 0 %>
+                                  <% for(let x = 0; x < pengabdi.length; x++ ) { %>
+                                  <% pg = pg + 1 %>
+                                  <% if (pengabdi[x].jenisKelamin == "Laki - Laki") { %>
+                                  <%  lk = lk + 1 %>
+                                  <%  } else { %>
+                                  <%  pr = pr + 1 } %>
+
+                                  <% }%>
+                                  <%= pg %> Pengabdi
+                                </div>
+                                <small><%= lk %> Laki - Laki  <%= pr %> Perempuan    </small>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                  Jumlah Sekolah</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                  <% let skl = 0 %>
+                                  <% let tk = 0 %>
+                                  <% let sd = 0 %>
+                                  <% let smp = 0 %>
+                                  <% let sma = 0 %>
+                                  <% for(let i= 0; i < unit.length; i++ ) { %>
+                                  <% if (unit[i].tingkat != "Sekretariat") { %>
+                                  <% skl = skl + 1 %>
+                                  <%  } if( unit[i].tingkat == "KB / TK") { %>
+                                  <%  tk = tk + 1  %>
+                                  <%  } if(unit[i].tingkat == "SD") { %>
+                                  <%  sd = sd + 1  %>
+                                  <%  } if(unit[i].tingkat == "SMP") { %>
+                                  <%  smp = smp + 1  %>
+                                  <%  } if(unit[i].tingkat == "SMA") { %>
+                                  <%  sma = sma + 1 } %>
+                                  <% } %>
+                                  <%= skl %> Sekolah
+                                </div>
+                                <small><%= tk %> KB / TK  <%= sd %> SD <%= smp %> SMP <%= sma %> SMA  </small>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-building fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                  Jumlah Pengabdi Tetap</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                  <% let gt = 0 %>
+                                  <% let pt = 0 %>
+                                  <% let ttp = 0 %>
+                                  <% for(let i = 0; i < pengabdi.length; i++ ) { %>
+                                  <% if (pengabdi[i].jenisPengabdiId[0].jenis == true) { %>
+                                  <%  ttp++ %>
+                                  <%  }  if (pengabdi[i].jenisPengabdiId[0].jenisPengabdi == "Pegawai Tetap") { %>
+                                  <%  pt++  %>
+                                  <%  }  if (pengabdi[i].jenisPengabdiId[0].jenisPengabdi == "Guru Tetap") { %>
+                                  <%  gt++ } %>
+
+                                  <% }%>
+                                  <%= ttp %> Pengabdi Tetap Yayasan
+                                </div>
+                                <small><%= pt %> Pengabdi  <%= gt %> Guru  </small>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-danger shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                  Jumlah Pengabdi Tidak Tetap</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                  <% let gtt = 0 %>
+                                  <% let ptt = 0 %>
+                                  <% let htp = 0 %>
+                                  <% for(let i = 0; i < pengabdi.length; i++ ) { %>
+                                  <% if (pengabdi[i].jenisPengabdiId[0].jenis == false) { %>
+                                  <%  htp++ %>
+                                  <%  }  if (pengabdi[i].jenisPengabdiId[0].jenisPengabdi == "Pegawai Honorer") { %>
+                                  <%  pt++  %>
+                                  <%  }  if (pengabdi[i].jenisPengabdiId[0].jenisPengabdi == "Guru Honorer") { %>
+                                  <%  gt++ } %>
+
+                                  <% }%>
+                                  <%= htp %> Pengabdi Tidak Tetap
+                                </div>
+                                <small><%= ptt %> Pengabdi Honorer <%= gtt %> Guru Honorer  </small>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-lg-6 mb-4">
+              <div class="card shadow ">
+                <a href="#collapseCardGaji" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary">Gaji Berkala 1 Bulan Kedepan</h6>
+                </a>
+                <div class="collapse show" id="collapseCardGaji">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered dashboarTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Nip</th>
+                            <th>Nama</th>
+                            <th>JK / TTL</th>
+                            <th>Periode</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(let i = 0; i < pengabdi.length; i++ ) { %>
+                            <% if (pengabdi[i].tmtGaji) { %>
+                              <% if (pengabdi[i].jenisPengabdiId[0].bagian == "Akademik"){  pn = 60 } else {  pn = 56 } %>
+                              <% let pensiun =  pengabdi[i].tanggalLahir.getFullYear() + pn %>
+                              <% let tmt =  pengabdi[i].tmtGaji.getFullYear()%>
+                              <% let x = 0 %>
+
+                              <% for(let j=0; j < 50; j++ ) { %>
+                              <% x = x+4; %>
+                              <% if ( tmt+x <= pensiun) { %>
+                                <%let beda = bedaBulan(new Date(), new Date(`${tmt+x}, ${pengabdi[i].tmtGaji.getMonth()}, ${pengabdi[i].tmtGaji.getDate()}`))  %>
+                                 <% if (beda == 1   ) { %>
+                                  <tr>
+                                    <td><%= pengabdi[i].nip %></td>
+                                    <td><%= pengabdi[i].nama %></td>
+                                    <% var bulan = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
+                                    <% var bulan2 = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
+                                    <% var xbulan = pengabdi[i].tanggalLahir.getMonth(); %>
+                                    <% var xbulan2 = pengabdi[i].tmtGaji.getMonth() ;%>
+                                    <% var bulan = bulan[xbulan]; %>
+                                    <% var bulan2 = bulan2[xbulan2]; %>
+                                     <td><%= pengabdi[i].jenisKelamin %>, <br> <%= `${pengabdi[i].tanggalLahir.getDate()} ${bulan} ${pengabdi[i].tanggalLahir.getFullYear()}` %> </td>
+                                    <td><%= ` ${pengabdi[i].tmtGaji.getDate()} ${bulan2} ${tmt+x}` %></td>
+                                  </tr>
+                              <% } } }%>
+
+                          <% } } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+              <div class="card shadow ">
+                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary">Berkala Pangkat 1 Bulan Kedepan</h6>
+                </a>
+                <div class="collapse show" id="collapseCardExample" >
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered dashboarTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Nip</th>
+                            <th>Nama</th>
+                            <th>JK / TTL</th>
+                            <th>Periode</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(let i = 0; i < pengabdi.length; i++ ) { %>
+                            <% if (pengabdi[i].tmtGolongan) { %>
+                              <% if (pengabdi[i].jenisPengabdiId[0].bagian == "Akademik"){  pn = 60 } else {  pn = 56 } %>
+                              <% let pensiun =  pengabdi[i].tanggalLahir.getFullYear() + pn %>
+                              <% let tmt =  pengabdi[i].tmtGolongan.getFullYear()%>
+                              <% let x = 0 %>
+
+                              <% for(let j=0; j < 50; j++ ) { %>
+                              <% x = x+4; %>
+                              <% if ( tmt+x <= pensiun) { %>
+                                <%let beda = bedaBulan(new Date(), new Date(`${tmt+x}, ${pengabdi[i].tmtGolongan.getMonth()}, ${pengabdi[i].tmtGolongan.getDate()}`))  %>
+                                 <% if (beda == 1  ) { %>
+                                  <tr>
+                                    <td><%= pengabdi[i].nip %></td>
+                                    <td><%= pengabdi[i].nama %></td>
+                                    <% var bulan = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
+                                    <% var bulan2 = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
+                                    <% var xbulan = pengabdi[i].tanggalLahir.getMonth(); %>
+                                    <% var xbulan2 = pengabdi[i].tmtGolongan.getMonth() ;%>
+                                    <% var bulan = bulan[xbulan]; %>
+                                    <% var bulan2 = bulan2[xbulan2]; %>
+                                     <td><%= pengabdi[i].jenisKelamin %>, <br> <%= `${pengabdi[i].tanggalLahir.getDate()} ${bulan} ${pengabdi[i].tanggalLahir.getFullYear()}` %> </td>
+                                    <td><%= ` ${pengabdi[i].tmtGolongan.getDate()} ${bulan2} ${tmt+x}` %></td>
+                                  </tr>
+                              <% } } }%>
+
+                          <% } } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mb-4">
+              <div class="card shadow ">
+                <a href="#pensiun" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary">Pensiun Tahun ini</h6>
+                </a>
+                <div class="collapse show" id="pensiun" >
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered dashboarTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Nip</th>
+                            <th>Nama</th>
+                            <th>JK / TTL</th>
+                            <th>Periode</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(let i = 0; i < pengabdi.length; i++ ) { %>
+                              <% if (pengabdi[i].jenisPengabdiId[0].bagian == "Akademik"){  pn = 60 } else {  pn = 56 } %>
+                              <% let pensiun =  pengabdi[i].tanggalLahir.getFullYear() + pn %>
+                              <% let tahunSekarang =  new Date().getFullYear(); %>
+                              <% if ( tahunSekarang == pensiun) { %>
+                                 <tr>
+                                    <td><%= pengabdi[i].nip %></td>
+                                    <td><%= pengabdi[i].nama %></td>
+                                    <% var bulan = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
+                                    <% var xbulan = pengabdi[i].tanggalLahir.getMonth(); %>
+                                    <% var bulan = bulan[xbulan]; %>
+                                     <td><%= pengabdi[i].jenisKelamin %>, <br> <%= `${pengabdi[i].tanggalLahir.getDate()} ${bulan} ${pengabdi[i].tanggalLahir.getFullYear()}` %> </td>
+                                    <td><%= `${pengabdi[i].tanggalLahir.getDate()} ${bulan} ${pensiun}` %></td>
+                                  </tr>
+                          <% } } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mb-4">
+              <div class="card shadow ">
+                <a href="#pensiun1tahun" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary">Pensiun 1 Tahun kedepan </h6>
+                </a>
+                <div class="collapse show" id="pensiun1tahun" >
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered dashboarTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Nip</th>
+                            <th>Nama</th>
+                            <th>JK / TTL</th>
+                            <th>Periode</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(let i = 0; i < pengabdi.length; i++ ) { %>
+                              <% if (pengabdi[i].jenisPengabdiId[0].bagian == "Akademik"){  pn = 60 } else {  pn = 56 } %>
+                              <% let pensiun =  pengabdi[i].tanggalLahir.getFullYear() + pn %>
+                              <% let tahunSekarang =  new Date().getFullYear(); %>
+                              <% let beda =  pensiun - tahunSekarang %>
+                              <% if ( beda == 1 ) { %>
+                                 <tr>
+                                    <td><%= pengabdi[i].nip %></td>
+                                    <td><%= pengabdi[i].nama %></td>
+                                    <% var bulan = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
+                                    <% var xbulan = pengabdi[i].tanggalLahir.getMonth(); %>
+                                    <% var bulan = bulan[xbulan]; %>
+                                     <td><%= pengabdi[i].jenisKelamin %>, <br> <%= `${pengabdi[i].tanggalLahir.getDate()} ${bulan} ${pengabdi[i].tanggalLahir.getFullYear()}` %> </td>
+                                    <td><%= `${pengabdi[i].tanggalLahir.getDate()} ${bulan} ${pensiun}` %></td>
+                                  </tr>
+                          <% } } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-8 mb-4">
+              <div class="card shadow ">
+                <a href="#chart" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary">Statistik Jumlah Pengabdi </h6>
+                </a>
+                <div class="collapse show" id="chart" >
+                  <div class="card-body">
+                    <div class="chart-area">
+                      <canvas id="myBarChart"></canvas>
+                    </div>
+                    <hr>
+                    Statistik Jumlah Pengabdi berdasarkan Unit Kerja.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 mb-4">
+              <div class="card shadow ">
+                <a href="#chartGolonganid" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary"> Statistik Pengabdi Berdasarkan Golongan </h6>
+                </a>
+                <div class="collapse show" id="chartGolonganid" >
+                  <div class="card-body">
+                    <div class="chart-area">
+                      <canvas id="chartGolongan"></canvas>
+                    </div>
+                    <hr>
+                    Statistik Pengabdi Berdasarkan Golongan
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+<%- include('../../partials/footer.ejs') %>
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%- include('../../partials/js.ejs') %>
+
+
+
+<script>
+  // Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+
+// Bar Chart Example
+let unit = <%-JSON.stringify(unit)%>;
+let unit1 = [];
+for(let i = 0; i <  unit.length; i ++) {
+    unit1.push(unit[i].unit);
+ }
+
+ let tk1 =0; let tk2 =0; let tk4 =0;
+ let sd1 =0; let sd2 =0;  let sd3 =0; let sd4 =0;
+let smp1 =0; let smp4 =0; let sma1 = 0; let sma3=0; let dik = 0;
+
+let pengabdi = <%-JSON.stringify(pengabdi)%>;
+for(let i = 0; i <  pengabdi.length; i ++) {
+if (pengabdi[i].unitId[0].unit == "TK Islam Sultan Agung 1") { tk1++}
+if (pengabdi[i].unitId[0].unit == "TK Islam Sultan Agung 2") { tk2++}
+if (pengabdi[i].unitId[0].unit == "TK Islam Sultan Agung 4") { tk4++}
+if (pengabdi[i].unitId[0].unit == "SD Islam Sultan Agung 1") { sd1++}
+if (pengabdi[i].unitId[0].unit == "SD Islam Sultan Agung 2") { sd2++}
+if (pengabdi[i].unitId[0].unit == "SD Islam Sultan Agung 3") { sd3++}
+if (pengabdi[i].unitId[0].unit == "SD Islam Sultan Agung 4") { sd4++}
+if (pengabdi[i].unitId[0].unit == "SMP Islam Sultan Agung 1") { smp1++}
+if (pengabdi[i].unitId[0].unit == "SMP Islam Sultan Agung 4") { smp4++}
+if (pengabdi[i].unitId[0].unit == "SMA Islam Sultan Agung 1") { sma1++}
+if (pengabdi[i].unitId[0].unit == "SMA Islam Sultan Agung 3") { sma3++}
+if (pengabdi[i].unitId[0].unit == "Sekretariat Dikdasmen YBWSA") { dik++}
+
+ }
+
+
+var ctx = document.getElementById("myBarChart");
+var myBarChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: unit1,
+    datasets: [{
+      label: ["Jumlah Pengabdi"],
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#17a2b8 ', '#20c997' ,'#dc3545', '#28a745', '#fd7e14' ,'#e83e8c ', '#6610f2', '#6f42c1'],
+      hoverBackgroundColor:['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#17a2b8 ', '#20c997' ,'#dc3545', '#28a745', '#fd7e14' ,'#e83e8c ', '#6610f2', '#6f42c1'],
+      borderColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+      data: [ tk1,  tk2, tk4, sd1, sd2, sd3, sd4, smp1, smp4, sma1,  sma3,  dik],
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0,
+      }
+
+    },
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'month'
+        },
+        gridLines: {
+          display: false,
+          drawBorder: false
+        },
+        ticks: {
+          display: true
+        },
+        maxBarThickness: 100,
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max:  pengabdi.length ,
+          maxTicksLimit: 8,
+          padding: 10,
+          // Include a dollar sign in the ticks
+          callback: function(value, index, values) {
+            return  value;
+          }
+        },
+        gridLines: {
+          color: "rgb(234, 236, 244)",
+          zeroLineColor: "rgb(234, 236, 244)",
+          drawBorder: false,
+          borderDash: [2],
+          zeroLineBorderDash: [2]
+        }
+      }],
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      titleMarginBottom: 10,
+      titleFontColor: '#6e707e',
+      titleFontSize: 14,
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: true,
+      caretPadding: 10,
+      callbacks: {
+        label: function(tooltipItem, chart) {
+          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+          return datasetLabel + ' ' + tooltipItem.yLabel;
+        }
+      }
+    },
+  }
+});
+
+// Pie Chart
+let golongan = <%-JSON.stringify(golongan)%>;
+let golongan1 = [];
+for(let i = 0; i <  golongan.length; i ++) {
+  golongan1.push( `${golongan[i].pangkat} /  ${golongan[i].golongan}`);
+}
+
+let Ia=0; let Ib =0; let Ic=0; let Id = 0;
+let IIa=0; let IIb =0; let IIc=0; let IId = 0;
+ let IIIa=0; let IIIb =0; let IIIc=0; let IIId = 0;
+ let IVa=0; let IVb =0; let IVc=0; IVd = 0;
+
+
+for(let i = 0; i <  pengabdi.length; i++) {
+if (pengabdi[i].naikGolonganId) {
+ for(let j = 0; j <  pengabdi[i].naikGolonganId.length; j++) {
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IA" && pengabdi[i].naikGolonganId[j].isAktif == true ) { Ia++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IB" && pengabdi[i].naikGolonganId[j].isAktif == true ) { Ib++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IC" && pengabdi[i].naikGolonganId[j].isAktif == true ) { Ic++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "ID" && pengabdi[i].naikGolonganId[j].isAktif == true ) { Id++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IIA" && pengabdi[i].naikGolonganId[j].isAktif == true ) { IIa++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IIB" && pengabdi[i].naikGolonganId[j].isAktif == true ) { IIb++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IIC" && pengabdi[i].naikGolonganId[j].isAktif == true ) { IIc++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IID" && pengabdi[i].naikGolonganId[j].isAktif == true ) { IId++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IIIA" && pengabdi[i].naikGolonganId[j].isAktif == true ) { IIIa++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IIIB" && pengabdi[i].naikGolonganId[j].isAktif == true ) { IIIb++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IIIC" && pengabdi[i].naikGolonganId[j].isAktif == true ) { IIIc++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IIID" && pengabdi[i].naikGolonganId[j].isAktif == true ) { IIId++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IVA" && pengabdi[i].naikGolonganId[j].isAktif == true ) { IVa++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IVB" && pengabdi[i].naikGolonganId[j].isAktif == true ) { IVb++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IVC" && pengabdi[i].naikGolonganId[j].isAktif == true ) { IVc++}
+if (pengabdi[i].naikGolonganId[j].golonganId[0].golongan == "IVD" && pengabdi[i].naikGolonganId[j].isAktif == true ) { IVd++}
+
+}} }
+
+var ctx2 = document.getElementById("chartGolongan");
+var myPieChart = new Chart(ctx2, {
+  type: 'doughnut',
+  data: {
+    labels: golongan1,
+    datasets: [{
+      data: [Ia, Ib,  Ic, Id, IIa, IIb, IIc, IId,  IIIa,  IIIb,  IIIc,  IIId,  IVa, IVb, IVc, IVd],
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#17a2b8 ', '#20c997' ,'#dc3545', '#28a745', '#fd7e14' ,'#e83e8c ', '#6610f2', '#6f42c1', '#b1903f', '#0a7d8f', '#299675', '#140530'],
+      hoverBackgroundColor:['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#17a2b8', '#20c997' ,'#dc3545', '#28a745', '#fd7e14' ,'#e83e8c ', '#6610f2', '#6f42c1', '#b1903f', '#0a7d8f', '#299675', '#140530'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+
+
+
+
+</script>

@@ -1,0 +1,111 @@
+<div class="tab-pane fade active show " id="show-pengabdi" role="tabpanel" aria-labelledby="pengabdi-tab">
+    <!-- DataTales Example -->
+  <div class="card shadow mb-4 mt-2">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card">
+              <div class="card-body text-center">
+                  <% if ( pengabdi.fotoUrl == null || pengabdi.fotoUrl.length === 0) { %>
+                      <% if (pengabdi.jenisKelamin == "Perempuan") { %>
+                        <img src="http://localhost:3000/images/perempuan.png" alt="fotoUrl" width="100%"></td>
+                      <% } else { %>
+                        <img src="http://localhost:3000/images/laki.png" alt="fotoUrl" width="100%"></td>
+                      <% } %>
+                    <%} else { %>
+                    <img src="http://localhost:3000/<%= pengabdi.fotoUrl %>" alt="fotoUrl" width="100%"></td>
+                    <%} %>
+              </div>
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-12">
+          <div class="table-responsive">
+            <table class="table table-borderless"  width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th class=" text-right">
+                      <h5>Biodata Pegawai</h5>
+                  </th>
+                  <th >
+                      <h3><%= pengabdi.nama %> <small>
+                          <% for(let i = 0; i < pengabdi.naikGolonganId.length; i++ ) { %>
+                            <% if (pengabdi.naikGolonganId[i]) {  %>
+                          <% if(pengabdi.naikGolonganId[i].isAktif == true) {  %>
+                          <%= pengabdi.naikGolonganId[i].golonganId[0].pangkat    %> / <%= pengabdi.naikGolonganId[i].golonganId[0].golongan   %>
+
+                       <% }}} %>
+                      </small></h3>
+                  </th>
+
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td class="text-right">NIP</td>
+                      <% if(pengabdi.jenisPengabdiId[0].jenis == true) { %>
+                          <td>11<%= pengabdi.nip %></td>
+                      <% } else { %>
+                          <td>12<%= pengabdi.nip %></td>
+                      <% }  %>
+                  </tr>
+                  <tr>
+                      <td class="text-right">Jenis Kelamin</td>
+                      <% if (pengabdi.jenisKelamin == "Laki - Laki" ){%>
+                      <td><i class="fas fa-mars"></i></i> <%= pengabdi.jenisKelamin %></td>
+                      <%} else {%>
+                      <td><i class="fas fa-venus"></i></i> <%= pengabdi.jenisKelamin %></td>
+                      <%}%>
+                  </tr>
+                  <tr>
+                      <td class="text-right">Tempat Tanggal Lahir</td>
+                      <% var bulan = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
+                      <% var xbulan = pengabdi.tanggalLahir.getMonth(); %>
+                      <% var bulan = bulan[xbulan]; %>
+                      <td><i class="fas fa-map-marker-alt"></i> <%= pengabdi.tempatLahir %> , <%= `${pengabdi.tanggalLahir.getDate()} ${bulan} ${pengabdi.tanggalLahir.getFullYear()}` %></td>
+                  </tr>
+                  <tr>
+                      <td class="text-right">Umur</td>
+                      <td><%= umur %></td>
+                  </tr>
+                  <tr>
+                      <td class="text-right">Golongan Darah</td>
+                      <td><%= pengabdi.golonganDarah %> </td>
+                  </tr>
+                  <tr>
+                      <td class="text-right">Agama</td>
+                      <td><%= pengabdi.agama %></td>
+                  </tr>
+                  <tr>
+                      <td class="text-right">Status Pernikahan</td>
+                      <td><%= pengabdi.statusPernikahan %></td>
+                  </tr>
+                  <tr>
+                      <td class="text-right">No Telpon / WA</td>
+                      <td><i class="fas fa-mobile-alt"></i> <%= pengabdi.telpon %></td>
+                  </tr>
+                  <tr>
+                      <td class="text-right">Email</td>
+                      <td><i class="fas fa-envelope"></i> <%= pengabdi.email %></td>
+                  </tr>
+                  <tr>
+                      <td class="text-right">Alamat</td>
+                      <td><%= pengabdi.alamat %></td>
+                  </tr>
+                  <tr>
+                      <td class="text-right">Status Kepegawaian</td>
+                      <td><%= pengabdi.jenisPengabdiId[0].jenisPengabdi %></td>
+                  </tr>
+                  <tr>
+                      <td class="text-right">Unit Kerja</td>
+                      <td><%= pengabdi.unitId[0].unit %></td>
+                  </tr>
+
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

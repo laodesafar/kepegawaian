@@ -1,0 +1,76 @@
+<div class="tab-pane fade" id="show-pendidikan" role="tabpanel" aria-labelledby="pendidikan-tab">
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4 mt-2">
+    <div class="card-header py-3">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pendidikanModal">
+        <i class="fas fa-plus"></i>
+        </button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered tableData" id="pendidikanTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Tingkat</th>
+              <th>Instansi</th>
+              <th>Lokasi</th>
+              <th>Jurusan</th>
+              <th>No Ijazah <br> Tgl Ijazah</th>
+              <th>Kepala / <br> Rektor</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for ( let i = 0; i < pengabdi.pendidikanId.length; i++ ) { %>
+              <tr>
+                <td> <%= pengabdi.pendidikanId[i].tingkat %> </td>
+                <td> <%= pengabdi.pendidikanId[i].nama %> </td>
+                <td> <%= pengabdi.pendidikanId[i].lokasi %> </td>
+                <td> <%= pengabdi.pendidikanId[i].jurusan %> </td>
+                <% var bulan = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
+                <% var xbulan = pengabdi.pendidikanId[i].tanggalIjazah.getMonth(); %>
+                <% var bulan = bulan[xbulan]; %>
+                <td><%= pengabdi.pendidikanId[i].nomorIjazah %>, <br> <%= `${pengabdi.pendidikanId[i].tanggalIjazah.getDate()} ${bulan} ${pengabdi.pendidikanId[i].tanggalIjazah.getFullYear()}` %></td>
+                <td> <%= pengabdi.pendidikanId[i].namaPimpinan %> </td>
+                <td class="text-center">
+                <% if ( pengabdi.pendidikanId[i].isAktif == false) { %>
+                  <a href="javascript:void(0)" type="button" title="detail" class="btn btn-warning  btn-sm button-status"
+                  data-idpengabdi="<%= pengabdi.id %>"
+                  data-id="<%= pengabdi.pendidikanId[i].id %>"
+                  data-nama="<%= pengabdi.pendidikanId[i].nama %>"
+                  ><i class="fas fa-cog"></i> Setup</a>
+                  <% } else { %>
+                    <button class="btn btn-success btn-sm"  disabled><i class="fas fa-check"></i> Aktif</button>
+                  <% } %>
+                </td>
+                <td>
+                  <a href="javascript:void(0)" type="button" title="detail" class="btn btn-primary btn-circle btn-sm button-detail"
+                  data-foto ="<%= pengabdi.pendidikanId[i].fotoUrl %>"
+                  ><i class="fas fa-images"></i></a>
+                  <a href="javascript:void(0)" type="button" title="edit" class="btn btn-warning btn-circle btn-sm button-update"
+                  data-idpengabdi="<%= pengabdi.id %>"
+                  data-id="<%= pengabdi.pendidikanId[i].id %>"
+                  data-tingkat="<%= pengabdi.pendidikanId[i].tingkat %>"
+                  data-nama="<%= pengabdi.pendidikanId[i].nama %>"
+                  data-lokasi="<%= pengabdi.pendidikanId[i].lokasi %>"
+                  data-jurusan="<%= pengabdi.pendidikanId[i].jurusan %>"
+                  data-nomorijazah="<%= pengabdi.pendidikanId[i].nomorIjazah %>"
+                  data-tanggalijazah="<% if ( pengabdi.pendidikanId[i].tanggalIjazah) { %><%= pengabdi.pendidikanId[i].tanggalIjazah.toISOString().split('T')[0] %><%}%>"
+                  data-namapimpinan="<%= pengabdi.pendidikanId[i].namaPimpinan %>"
+                  ><i class="fas fa-edit"></i></a>
+                    <button  title="hapus" class="btn btn-danger btn-circle btn-sm button-hapus" data-toggle="modal" data-target="#hapusModal"
+                    data-idpengabdi="<%= pengabdi.id %>"
+                    data-id="<%= pengabdi.pendidikanId[i].id %>"
+                    data-nama="Ijazah <%= pengabdi.pendidikanId[i].nama %>"
+                    ><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- End of DataTables -->
+</div>

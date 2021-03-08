@@ -1,0 +1,64 @@
+  <!-- Modal -->
+  <div class="modal fade" id="golonganModal" tabindex="-1" aria-labelledby="golonganModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="golonganModalLabel">Tambah Golongan Pengabdi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="needs-validation"  action="/admin/pengabdi/golongan/<%= pengabdi.id %>" method="POST" enctype="multipart/form-data"  novalidate>
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="golongan">Pangkat / Golongan</label>
+                  <select class="form-control golonganId" name="golonganId" required>
+                      <option selected disabled>-- Pilih Golongan --</option>
+                      <% for(let i = 0; i < golongan.length; i++ ) { %>
+                        <option value="<%= golongan[i].id %>"><%= golongan[i].pangkat %> / <%= golongan[i].golongan %> </option>
+                      <% } %>
+                    </select>
+                    <div class="invalid-feedback">Golongan wajib dipilih</div>
+                </div>
+                <div class="form-group">
+                  <label for="tmtgolongan">TMT Golongan</label>
+                  <input type="date" class="form-control tmtGolongan" name="tmtGolongan" placeholder="Input TMT" required>
+                  <div class="invalid-feedback">TMT Golongan wajib diinputkan</div>
+                </div>
+                <div class="form-group">
+                  <label for="pejabatPengesah">Pejabat Pengesah</label>
+                  <input type="text" class="form-control"  name="pejabatPengesah" placeholder="Input Pejabat Pengesah" required>
+                  <div class="invalid-feedback">
+                    Pejabat Pengesah wajib diinput
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-lg-6 col-sm-12 col-12">
+                      <label for="nomorSk">Nomor SK</label>
+                      <input type="text" class="form-control"  name="nomorSk" placeholder="Input Nomor SK" required>
+                      <div class="invalid-feedback">
+                        Nomor SK wajib diinput
+                        </div>
+                  </div>
+                    <div class="form-group col-lg-6 col-sm-12 col-12">
+                      <label for="tanggalSk">Tanggal SK</label>
+                      <input type="date" class="form-control"  name="tanggalSk" placeholder="Input Tanggal SK" required>
+                      <div class="invalid-feedback">
+                        Tanggal SK wajib diinput
+                        </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="fotoUrl">Scan SK</label>
+                <input type="file" accept=".jpg,.jpeg,.gif,.png" class="form-control fotoUrl" name="fotoUrl" placeholder="Input Foto" required>
+                <div class="invalid-feedback fotoValid">Scan SK wajib diInput</div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary" data-active="active" data-show="show">Tambah</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

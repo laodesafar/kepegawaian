@@ -1,0 +1,25 @@
+  <!-- Modal -->
+  <div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content text-justify">
+        <div class="modal-header centered ">
+          <h5 class="modal-title" id="statusModalLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="/admin/pengabdi/pendidikan/status/<%= pengabdi.id %>/?_method=PUT" method="POST" method="POST">
+            <div class="modal-body text-center">
+              <h1 class="h1 text-success"><i class="fas fa-cog fa-lg  text-justify"></i></h1>
+              <p class="setupDetail"></p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <input type="hidden" class="idPengabdi" name="idPengabdi">
+                <input type="hidden" class="id" name="id">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+              <button type="submit" class="btn btn-success">Setup</button>
+            </div>
+        </form>
+      </div>
+    </div>a
+  </div>

@@ -1,0 +1,58 @@
+  <!-- Modal -->
+  <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tambahModalLabel">Tambah Jenis Pengabdi</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form class="needs-validation" action="/admin/jenispengabdi" method="POST" novalidate>
+                <div class="modal-body">
+                    <div class="form-group">
+                      <label for="jenisPengabdi">Jenis Pengadi</label>
+                      <input type="text" class="form-control"  name="jenisPengabdi" placeholder="Input Jenis Pengabdi" required>
+                    </div>
+                    <div class="invalid-feedback">
+                      Jenis Pengabdi wajib diinputkan
+                    </div>
+                  <fieldset class="form-group">
+                    <legend class="col-form-label">Bagian</legend>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="bagian"   value="Akademik" required autofocus>
+                        <label class="form-check-label" for="akademik">
+                        Akademik
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="bagian"   value="Non Akademik" required>
+                        <label class="form-check-label" for="nonakademik">
+                        Non Akademik
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset class="form-group">
+                  <legend class="col-form-label">Jenis</legend>
+                  <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="jenis"   value="true" required autofocus>
+                      <label class="form-check-label" for="true">
+                     Tetap
+                      </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="jenis"   value="false" required>
+                      <label class="form-check-label" for="false">
+                      Tidak Tetap
+                      </label>
+                  </div>
+              </fieldset>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
