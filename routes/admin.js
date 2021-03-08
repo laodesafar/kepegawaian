@@ -74,6 +74,7 @@ router.delete(
 );
 
 router.get("/penggajian", adminControler.viewPenggajian);
+router.get("/mutasi", adminControler.viewMutasi);
 router.get("/pengguna", adminControler.viewPengguna);
 router.get("/akun", adminControler.viewAkun);
 

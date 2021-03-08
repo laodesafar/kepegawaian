@@ -92,12 +92,6 @@ const pengabdiSchema = new mongoose.Schema({
       ref: "NaikJabatan",
     },
   ],
-  mutasiId: [
-    {
-      type: ObjectId,
-      ref: "Mutasi",
-    },
-  ],
 });
 
 module.exports = mongoose.model("Pengabdi", pengabdiSchema);
