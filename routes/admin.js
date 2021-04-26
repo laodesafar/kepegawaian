@@ -2,6 +2,8 @@ const router = require("express").Router();
 const adminControler = require("../controllers/adminController");
 const { upload } = require("../middlewares/multer");
 
+router.get("/signin", adminControler.viewSignin);
+router.post("/signin", adminControler.actionSignin);
 router.get("/dashboard", adminControler.viewDashboard);
 // router data master
 router.get("/golongan", adminControler.viewGolongan);

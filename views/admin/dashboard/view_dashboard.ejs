@@ -130,12 +130,12 @@
                                   <% let ptt = 0 %>
                                   <% let htp = 0 %>
                                   <% for(let i = 0; i < pengabdi.length; i++ ) { %>
-                                  <% if (pengabdi[i].jenisPengabdiId[0].jenis == false) { %>
+                                  <% if (!pengabdi[i].jenisPengabdiId[0].jenis) { %>
                                   <%  htp++ %>
                                   <%  }  if (pengabdi[i].jenisPengabdiId[0].jenisPengabdi == "Pegawai Honorer") { %>
-                                  <%  pt++  %>
+                                  <%  ptt++  %>
                                   <%  }  if (pengabdi[i].jenisPengabdiId[0].jenisPengabdi == "Guru Honorer") { %>
-                                  <%  gt++ } %>
+                                  <%  gtt++ } %>
 
                                   <% }%>
                                   <%= htp %> Pengabdi Tidak Tetap

@@ -7,10 +7,45 @@ const Keluarga = require("../models/Keluarga");
 const Pendidikan = require("../models/Pendidikan");
 const NaikGolongan = require("../models/NaikGolongan");
 const NaikJabatan = require("../models/NaikJabatan");
+const User = require("../models/User");
 const fs = require("fs-extra");
 const path = require("path");
+const bcrypt = require("bcryptjs");
 
 module.exports = {
+  viewSignin: async (req, res) => {
+    try {
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+      res.render("index", {
+        alert,
+        title: "Siadik | Login",
+      });
+    } catch (error) {
+      res.redirect("/admin/signin");
+    }
+  },
+
+  actionSignin: async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      const user = await User.findOne({ username: username });
+      if (!user) {
+        req.flash("alertMessage", "User tidak ditemukan");
+        req.flash("alertStatus", "danger");
+        res.redirect("/admin/signin");
+      }
+      const isPasswordMatch = await bcrypt.compare(password, user.password);
+      if (!isPasswordMatch) {
+        req.flash("alertMessage", "Password yang dimasukan tidak cocok");
+        req.flash("alertStatus", "danger");
+      }
+      res.redirect("/admin/dashboard");
+    } catch (error) {
+      res.redirect("admin/signin");
+    }
+  },
   viewDashboard: async (req, res) => {
     try {
       const unit = await Unit.find();

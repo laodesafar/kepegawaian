@@ -4,7 +4,6 @@ const { ObjectId } = mongoose.Schema;
 const mutasiSchema = new mongoose.Schema({
   jenisMutasi: {
     type: String,
-    required: true,
   },
   nomorSk: {
     type: String,
@@ -12,7 +11,6 @@ const mutasiSchema = new mongoose.Schema({
   },
   tanggalMutasi: {
     type: Date,
-    required: true,
   },
   pengabdiId: [
     {
