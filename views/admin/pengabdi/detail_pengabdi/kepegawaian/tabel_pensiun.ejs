@@ -1,38 +1,52 @@
-  <!-- Modal -->
-  <div class="modal fade" id="pensiunModal" tabindex="-1" aria-labelledby="pensiunModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content text-justify">
-        <div class="modal-header centered ">
-          <h5 class="modal-title" id="pensiunModalLabel">Jadwal Pensiun</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" width="100%" cellspacing="0">
-                      <thead>
-                        <tr>
-                          <th>Tanggal Lahir</th>
-                          <th>Tanggal Jatuh Tempo Pensiun</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% var bulan = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
-                        <% var xbulan = pengabdi.tanggalLahir.getMonth(); %>
-                        <% var bulan = bulan[xbulan]; %>
-                        <td><%= `${pengabdi.tanggalLahir.getDate()} ${bulan} ${pengabdi.tanggalLahir.getFullYear()}` %></td>
-                        <%   %>
-                        <% let pn = 0; %>
-                        <% if (pengabdi.jenisPengabdiId[0].bagian == "Akademik"){  pn = 60 } else {  pn = 56 } %>
-                        <td><%= `${pengabdi.tanggalLahir.getDate()} ${bulan} ${pengabdi.tanggalLahir.getFullYear()+pn}` %></td>
-                      </tbody>
-                    </table>
-                  </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-            </div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="pensiunModal"
+  tabindex="-1"
+  aria-labelledby="pensiunModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content text-justify">
+      <div class="modal-header centered">
+        <h5 class="modal-title" id="pensiunModalLabel">Jadwal Pensiun</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </div>a
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Tanggal Lahir</th>
+                <th>Tanggal Jatuh Tempo Pensiun</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% const bulan= pengabdi.tanggalLahir.toLocaleString("id-ID", {
+              month: "long" }); %> <% const hari =
+              pengabdi.tanggalLahir.toLocaleString("id-ID", { day: "2-digit" });
+              %> <% const tahun = pengabdi.tanggalLahir.getFullYear(); %>
+              <td><%= `${hari} ${bulan} ${tahun}` %></td>
+              <% %> <% let pn = 0; %> <% if (pengabdi.jenisPengabdiId[0].bagian
+              == "Akademik"){ pn = 60 } else { pn = 56 } %>
+              <td><%= `${hari} ${bulan} ${tahun+pn}` %></td>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Tutup
+        </button>
+      </div>
+    </div>
   </div>
+  a
+</div>

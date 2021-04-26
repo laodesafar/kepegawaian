@@ -1,47 +1,59 @@
-  <!-- Modal -->
-  <div class="modal fade" id="gajiModal" tabindex="-1" aria-labelledby="gajiModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content text-justify">
-        <div class="modal-header centered ">
-          <h5 class="modal-title" id="gajiModalLabel">Jadwal Gaji Berkala</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" width="100%" cellspacing="0">
-                      <thead>
-                        <tr>
-                          <th>Periode</th>
-                          <th>Tanggal Kenaikan Pangkat</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% if( pengabdi.tmtGaji) { %>
-                        <% if (pengabdi.jenisPengabdiId[0].bagian == "Akademik"){  pn = 60 } else {  pn = 56 } %>
-                        <% let pensiun =  pengabdi.tanggalLahir.getFullYear() + pn %>
-                        <% let tmt =  pengabdi.tmtGaji.getFullYear()%>
-                        <% let x = 0 %>
-                        <% for(let i=0; i < 50; i++ ) { %>
-                        <% x = x+4; %>
-                        <% if ( tmt+x <= pensiun) { %>
-                        <% var bulan = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
-                        <% var xbulan = pengabdi.tmtGaji.getMonth(); %>
-                        <% var bulan = bulan[xbulan]; %>
-
-                        <tr>
-                            <td>Periode <%= i+1 %></td>
-                            <td><%= `${pengabdi.tmtGaji.getDate()} ${bulan} ${tmt+x}` %></td>
-                        </tr>
-                        <% } } }%>
-                      </tbody>
-                    </table>
-                  </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-            </div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="gajiModal"
+  tabindex="-1"
+  aria-labelledby="gajiModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content text-justify">
+      <div class="modal-header centered">
+        <h5 class="modal-title" id="gajiModalLabel">Jadwal Gaji Berkala</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </div>a
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Periode</th>
+                <th>Tanggal Kenaikan Pangkat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if( pengabdi.tmtGaji) { %> <% if
+              (pengabdi.jenisPengabdiId[0].bagian == "Akademik"){ pn = 60 } else
+              { pn = 56 } %> <% let pensiun =
+              pengabdi.tanggalLahir.getFullYear() + pn %> <% let tmt =
+              pengabdi.tmtGaji.getFullYear()%> <% let x = 0 %> <% for(let i=0; i
+              < 50; i++ ) { %> <% x = x+4; %> <% if ( tmt+x <= pensiun) { %> <%
+              const bulan= pengabdi.tmtGaji.toLocaleString("id-ID",{ month:
+              "long" }); %> <% const hari =
+              pengabdi.tmtGaji.toLocaleString("id-ID", { day: "2-digit" }); %>
+
+              <tr>
+                <td>Periode <%= i+1 %></td>
+                <td><%= `${hari} ${bulan} ${tmt+x}` %></td>
+              </tr>
+              <% } } }%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Tutup
+        </button>
+      </div>
+    </div>
   </div>
+  a
+</div>

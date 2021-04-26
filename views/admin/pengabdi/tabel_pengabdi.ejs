@@ -36,10 +36,11 @@
                 <%} %>
               <td> <a href="/admin/pengabdi/detail-pengabdi/<%= pengabdi[i].id %>"> <%= pengabdi[i].nip %> </a></td>
               <td><%= pengabdi[i].nama %></td>
-              <% var bulan = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']; %>
-              <% var xbulan = pengabdi[i].tanggalLahir.getMonth(); %>
-              <% var bulan = bulan[xbulan]; %>
-              <td><%= pengabdi[i].jenisKelamin %>, <br> <%= `${pengabdi[i].tanggalLahir.getDate()} ${bulan} ${pengabdi[i].tanggalLahir.getFullYear()}` %> </td>
+
+              <%  const bulan= pengabdi[i].tanggalLahir.toLocaleString("id-ID", { month: "long" }); %>
+              <% const hari = pengabdi[i].tanggalLahir.toLocaleString("id-ID", { day: "2-digit" }); %>
+              <% const tahun = pengabdi[i].tanggalLahir.getFullYear(); %>
+              <td><%= pengabdi[i].jenisKelamin %>, <br> <%= `${hari} ${bulan} ${tahun}` %> </td>
               <td>
                 <%= pengabdi[i].unitId[0].unit %>  </td>
               <td>
@@ -50,7 +51,7 @@
                   data-nip="<%= pengabdi[i].nip%>"
                   data-nama="<%= pengabdi[i].nama%>"
                   data-tempatlahir="<%= pengabdi[i].tempatLahir%>" %>
-                  data-tanggallahir="<% if ( pengabdi[i].tanggalLahir) { %><%= pengabdi[i].tanggalLahir.toISOString().split('T')[0] %><%}%>"
+                  data-tanggallahir="<% if ( pengabdi[i].tanggalLahir) { %><%= pengabdi[i].tanggalLahir.toLocaleString().split('T')[0] %><%}%>"
                   data-agama="<%= pengabdi[i].agama%>"
                   data-jeniskelamin="<%= pengabdi[i].jenisKelamin%>"
                   data-golongandarah="<%= pengabdi[i].golonganDarah%>"
@@ -58,9 +59,9 @@
                   data-alamat="<%= pengabdi[i].alamat%>"
                   data-telpon="<%= pengabdi[i].telpon%>"
                   data-email="<%= pengabdi[i].email%>"
-                  data-tmtgolongan="<% if ( pengabdi[i].tmtGolongan) { %><%= pengabdi[i].tmtGolongan.toISOString().split('T')[0] %><%}%>"
-                  data-tmtgaji="<% if ( pengabdi[i].tmtGaji) { %><%= pengabdi[i].tmtGaji.toISOString().split('T')[0] %><%}%>"
-                  data-tmtkerja="<% if ( pengabdi[i].tmtKerja) { %><%= pengabdi[i].tmtKerja.toISOString().split('T')[0] %><%}%>"
+                  data-tmtgolongan="<% if ( pengabdi[i].tmtGolongan) { %><%= pengabdi[i].tmtGolongan.toLocaleString().split('T')[0] %><%}%>"
+                  data-tmtgaji="<% if ( pengabdi[i].tmtGaji) { %><%= pengabdi[i].tmtGaji.toLocaleString().split('T')[0] %><%}%>"
+                  data-tmtkerja="<% if ( pengabdi[i].tmtKerja) { %><%= pengabdi[i].tmtKerja.toLocaleString().split('T')[0] %><%}%>"
                   data-unitid="<%= pengabdi[i].unitId[0].id%>"
                   data-jenispengabdiid="<%= pengabdi[i].jenisPengabdiId[0].id%>"
                   data-jenis="<%= pengabdi[i].jenisPengabdiId[0].jenis%>"

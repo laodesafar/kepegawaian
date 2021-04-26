@@ -1,9 +1,12 @@
 const router = require("express").Router();
 const adminControler = require("../controllers/adminController");
 const { upload } = require("../middlewares/multer");
+const auth = require("../middlewares/auth");
 
 router.get("/signin", adminControler.viewSignin);
 router.post("/signin", adminControler.actionSignin);
+router.use(auth);
+router.get("/logout", adminControler.actionLogout);
 router.get("/dashboard", adminControler.viewDashboard);
 // router data master
 router.get("/golongan", adminControler.viewGolongan);

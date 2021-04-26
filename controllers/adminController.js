@@ -18,10 +18,14 @@ module.exports = {
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus };
-      res.render("index", {
-        alert,
-        title: "Siadik | Login",
-      });
+      if (req.session.user == null || req.session.user == undefined) {
+        res.render("index", {
+          alert,
+          title: "Siadik | Login",
+        });
+      } else {
+        res.redirect("/admin/dashboard");
+      }
     } catch (error) {
       res.redirect("/admin/signin");
     }
@@ -40,12 +44,25 @@ module.exports = {
       if (!isPasswordMatch) {
         req.flash("alertMessage", "Password yang dimasukan tidak cocok");
         req.flash("alertStatus", "danger");
+        res.redirect("/admin/signin");
       }
+
+      req.session.user = {
+        id: user.id,
+        username: user.username,
+      };
+
       res.redirect("/admin/dashboard");
     } catch (error) {
       res.redirect("admin/signin");
     }
   },
+
+  actionLogout: (req, res) => {
+    req.session.destroy();
+    res.redirect("/admin/signin");
+  },
+
   viewDashboard: async (req, res) => {
     try {
       const unit = await Unit.find();
@@ -78,6 +95,7 @@ module.exports = {
       res.render("admin/dashboard/view_dashboard", {
         title: "SiAdik Dikdasmen | Dashboard",
         alert,
+        user: req.session.user,
         pengabdi,
         unit,
         golongan,
@@ -97,6 +115,7 @@ module.exports = {
       const alert = { message: alertMessage, status: alertStatus };
       res.render("admin/master/view_golongan", {
         golongan,
+        user: req.session.user,
         alert,
         title: "SiAdik Dikdasmen | Golongan",
       });
@@ -283,6 +302,7 @@ module.exports = {
       res.render("admin/master/view_unit", {
         unit,
         alert,
+        user: req.session.user,
         title: "SiAdik Dikdasmen | Unit",
       });
     } catch (error) {
@@ -358,6 +378,7 @@ module.exports = {
       res.render("admin/pengabdi/view_pengabdi", {
         pengabdi,
         unit,
+        user: req.session.user,
         jenisPengabdi,
         golongan,
         alert,
@@ -589,6 +610,7 @@ module.exports = {
       res.render("admin/pengabdi/detail_pengabdi/view_detail_pengabdi", {
         title: "SiAdik Dikdasmen | Detail Pengabdi",
         alert,
+        user: req.session.user,
         pengabdi,
         golongan,
         jabatan,
@@ -1095,21 +1117,25 @@ module.exports = {
   viewPenggajian: (req, res) => {
     res.render("admin/penggajian/view_penggajian", {
       title: "SiAdik Dikdasmen | Penggajian",
+      user: req.session.user,
     });
   },
   viewMutasi: (req, res) => {
     res.render("admin/mutasi/view_mutasi", {
       title: "SiAdik Dikdasmen | Mutasi",
+      user: req.session.user,
     });
   },
   viewPengguna: (req, res) => {
     res.render("admin/pengguna/view_pengguna", {
       title: "SiAdik Dikdasmen | Pengguna",
+      user: req.session.user,
     });
   },
   viewAkun: (req, res) => {
     res.render("admin/akun/view_akun", {
       title: "SiAdik Dikdasmen | Akun",
+      user: req.session.user,
     });
   },
 };
