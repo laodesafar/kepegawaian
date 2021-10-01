@@ -181,6 +181,7 @@ module.exports = {
       const alert = { message: alertMessage, status: alertStatus };
       res.render("admin/master/view_jabatan", {
         jabatan,
+        user: req.session.user,
         alert,
         title: "SiAdik Dikdasmen | Jabatan",
       });
@@ -241,6 +242,7 @@ module.exports = {
     const alert = { message: alertMessage, status: alertStatus };
     res.render("admin/master/view_jenispengabdi", {
       jenisPengabdi,
+      user: req.session.user,
       alert,
       title: "SiAdik Dikdasmen | Jenis Pengabdi",
     });
@@ -858,13 +860,8 @@ module.exports = {
     const { id } = req.params;
     try {
       const pengabdi = await Pengabdi.findOne({ _id: id });
-      const {
-        tmtGolongan,
-        pejabatPengesah,
-        nomorSk,
-        tanggalSk,
-        golonganId,
-      } = req.body;
+      const { tmtGolongan, pejabatPengesah, nomorSk, tanggalSk, golonganId } =
+        req.body;
 
       const newNaikGolongan = {
         tmtGolongan,
@@ -988,13 +985,8 @@ module.exports = {
     const { id } = req.params;
     try {
       const pengabdi = await Pengabdi.findOne({ _id: id });
-      const {
-        nomorSk,
-        tanggalSk,
-        tmtJabatanAwal,
-        tmtJabatanAkhir,
-        jabatanId,
-      } = req.body;
+      const { nomorSk, tanggalSk, tmtJabatanAwal, tmtJabatanAkhir, jabatanId } =
+        req.body;
 
       const newNaikJabatan = {
         nomorSk,
